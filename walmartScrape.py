@@ -8,18 +8,31 @@ HEADERS = ({'User-agent' :
 
 def scrapeProductInfo(item):
     productDict = {
-        'name' : scrapeName(item)
+        "name" : scrapeName(item),
+        "rating" : scrapeRating(item)
     }
+    return productDict
 
 def scrapeName(item):
-    
+    name = item.find("span", class_="w_iUH7")
+    if name == None:
+        return name
+    else:
+        return name.text
+def scrapeRating(item):
+    rating = item.find("div", class_="mr1 mr2-xl b black lh-copy f5 f4-l")
+    if rating == None:
+        return rating
+    else:
+        return rating.text
 def walmartScrapeMain(SearchQ):
     URL = "https://www.walmart.com/search?q=" + SearchQ
     page = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(page.content, "html.parser")
     item_elements = soup.find_all("div", class_="mb1 ph1 pa0-xl bb b--near-white w-25")
     for item in item_elements:
-        scrapeProductInfo(item)
+        productinfo = scrapeProductInfo(item)
+    
 
 searchQ = "boots"
 walmartScrapeMain(searchQ)
