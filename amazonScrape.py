@@ -57,8 +57,6 @@ def scrapeUrl(item):
         return "amazon.com" + urlend
     else:
         return None
-def raiseError():
-    print("Something went wrong")
 
 #ask user for amazon item and create page through requests
 def scrapeMain(searchQ):

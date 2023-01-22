@@ -18,7 +18,6 @@ def storeData():
 def recAlgo(tags):
     data = storeData()
     recItems = dict(data)
-    print("rating =", tags['rating'])
     if tags['rating'] != "":
         for key in data:
             if float(tags['rating']) > float(data[key]["rating"][0:3]):
@@ -37,10 +36,12 @@ def recAlgo(tags):
             else:   
                 pList.append(float(recItems[key]['pricing']))
     pList.sort(reverse = True)
-    for key in recItems:
-        recItems[key]['points'] += pList.index(float(recItems[key]['pricing']))
-        print(recItems[key])
+    if tags['pricing'] != "" or tags['rating'] != "":
+        for key in recItems:
+            recItems[key]['points'] += pList.index(float(recItems[key]['pricing']))
+            print(recItems[key])
 
+    print(recItems)
             
     
     

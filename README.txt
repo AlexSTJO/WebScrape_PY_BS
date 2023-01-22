@@ -1,7 +1,7 @@
 Still in Dev
 NEXT STEPS:
 1. UI update once reccomendation created
-2. Implement Walmart Scrape
+2. Implement Walmart Scrape(done)
 3. Implement Target Scrape
 
 How to evolve project:

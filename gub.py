@@ -4,6 +4,7 @@ from kivy.uix.gridlayout import GridLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.button import Button
 from amazonScrape import *
+from walmartScrape import *
 from scrapeAlgo import *
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
@@ -29,6 +30,7 @@ class MyGrid(GridLayout):
 
     def pressed(self, instances):
         scrapeMain(str(self.name.text))
+        walmartScrapeMain(str(self.name.text))
         tags = {
             "rating": self.rating.text,
             "pricing": self.pricing.text
@@ -43,3 +45,5 @@ class MyApp(App):
 
 if __name__ == "__main__":
     MyApp().run()
+
+
