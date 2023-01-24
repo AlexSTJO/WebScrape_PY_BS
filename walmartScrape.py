@@ -24,7 +24,10 @@ def scrapeName(item):
         return name.text
 
 def scrapeRating(item):
-    rating = item.find("div", class_="flex items-center mt2")
+    parent = item.find("div", class_="flex items-center mt2")
+    if parent == None:
+        return None
+    rating = parent.find("span", class_="w_iUH7")
     if rating == None:
         return rating
     else:
@@ -45,15 +48,18 @@ def scrapeDeliveryDate(item):
         return date.text
 
 def scrapeUrl(item):
-    parent = item.find("div", class_="absolute w-100 h-100 z-1 hide-sibling-opacity")
+    parent = str(item.find("a", class_="absolute w-100 h-100 z-1 hide-sibling-opacity"))
     if parent == None:
-        return None
-    link_list = str(parent.find("a", href = True))
-    if "href=" in link_list:
-        urlend =  link_list.find[("href=") + 6:link_list.find('">')]
-        return "walmart.com" + urlend
+        return parent
+    if "href=" in parent:
+        urlend = parent[parent.find("href=") + 6:parent.find('" l')]
+        if "http" in urlend and "/ip" in urlend :
+            urlend = urlend[urlend.find("/ip"):]
+            return "walmart.com" + urlend
+        elif "/ip" in urlend:
+            return "walmart.com" + urlend
     else:
-        return None
+        return parent
 
 
 def walmartScrapeMain(SearchQ):
@@ -63,7 +69,7 @@ def walmartScrapeMain(SearchQ):
     item_elements = soup.find_all("div", class_="mb1 ph1 pa0-xl bb b--near-white w-25")
     for item in item_elements:
         productinfo = scrapeProductInfo(item)
-    if None not in productinfo.values():
-        f = open("productinfo.txt", "a")
-        f.write(str(productinfo) + "\n")
-        f.close
+        if None not in productinfo.values():
+            f = open("productinfo.txt", "a")
+            f.write(str(productinfo) + "\n")
+            f.close

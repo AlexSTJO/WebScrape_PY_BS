@@ -6,6 +6,8 @@ from kivy.uix.button import Button
 from amazonScrape import *
 from walmartScrape import *
 from scrapeAlgo import *
+from targetScrape import *
+
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
         super(MyGrid, self).__init__(**kwargs)
@@ -31,6 +33,7 @@ class MyGrid(GridLayout):
     def pressed(self, instances):
         scrapeMain(str(self.name.text))
         walmartScrapeMain(str(self.name.text))
+        targetScrapeMain(str(self.name.text))
         tags = {
             "rating": self.rating.text,
             "pricing": self.pricing.text
