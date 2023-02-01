@@ -50,6 +50,7 @@ def scrapeUrl(item):
 
 def targetScrapeMain(searchQ):
     URL = 'https://www.target.com/s?searchTerm=' + searchQ
+    print(URL)
     page = requests.get(URL, headers=HEADERS)
     soup = BeautifulSoup(page.content, "html.parser")
     item_elements = soup.find_all('div', class_="styles__StyledCol-sc-fw90uk-0 fPNzT")
@@ -60,3 +61,6 @@ def targetScrapeMain(searchQ):
             f = open("productinfo.txt", "a")
             f.write(str(productinfo) + "\n")
             f.close
+
+x = "boots"
+targetScrapeMain(x)
