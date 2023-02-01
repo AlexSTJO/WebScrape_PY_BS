@@ -33,7 +33,6 @@ class MyGrid(GridLayout):
     def pressed(self, instances):
         scrapeMain(str(self.name.text))
         walmartScrapeMain(str(self.name.text))
-        targetScrapeMain(str(self.name.text))
         tags = {
             "rating": self.rating.text,
             "pricing": self.pricing.text
