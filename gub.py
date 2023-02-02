@@ -6,7 +6,6 @@ from kivy.uix.button import Button
 from amazonScrape import *
 from walmartScrape import *
 from scrapeAlgo import *
-from targetScrape import *
 
 class MyGrid(GridLayout):
     def __init__(self, **kwargs):
